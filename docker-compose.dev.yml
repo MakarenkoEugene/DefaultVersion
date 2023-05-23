@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  web:
+    build: ./frontend
+    command: sh -c "npm run dev"
+    image: ${PROJECT_NAME}_web_dev
+    depends_on:
+      - api
+    ports:
+      - '3000:3000'
+    networks:
+      - network-backend
+    volumes:
+      - ./frontend/src:/${PROJECT_NAME}/frontend/src:z
+    env_file:
+      - ./.env
+
+  api:
+    build: ./backend
+    command: sh -c "npm run dev"
+    image: '${PROJECT_NAME}_api_dev'
+    depends_on:
+      - mongo
+    ports:
+      - '3001:3001'
+    networks:
+      - network-backend
+    volumes:
+      - ./backend/src:/${PROJECT_NAME}/backend/src:z
+    env_file:
+      - ./.env
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: username
+      MONGODB_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    networks:
+      - network-backend
+
+networks:
+  network-backend:
+
+volumes:
+  mongodb_data:

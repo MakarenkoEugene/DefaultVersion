@@ -1,0 +1,53 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended", "prettier"],
+  "globals": {
+    "darkTheme": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["html"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [["@src", "./frontend/src"]],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": [2, 120],
+    "import/prefer-default-export": "off",
+    // "array-callback-return": "off",
+    // "no-plusplus": "off",
+    "react/prop-types": 0,
+    "jsx-quotes": [2, "prefer-single"],
+    "object-curly-newline": 0,
+    "no-underscore-dangle": 0,
+    // "lines-between-class-members": "off",
+    // "react/destructuring-assignment": "off",
+    "react/jsx-props-no-spreading": "off",
+    // "react-hooks/exhaustive-deps": "off",
+    // "jsx-a11y/alt-text": "off",
+    // "class-methods-use-this": "off",
+    // "no-restricted-globals": "off",
+    // "react/jsx-one-expression-per-line": "off",
+    // "jsx-a11y/iframe-has-title": "off",
+    // "jsx-a11y/aria-role": "off"
+    "linebreak-style": [2, "unix"]
+  }
+}

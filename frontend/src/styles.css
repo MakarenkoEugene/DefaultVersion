@@ -1,0 +1,49 @@
+* {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  
+  padding-right: 24px;
+}
+
+.todo-form * {
+  padding: 4px 8px;
+  margin: 4px 0px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(240, 240, 240);
+  padding: 12px;
+  margin: 12px;
+}
+
+.todo-item > * {
+  padding: 0px 24px;
+}
+
+.todo-item > input {
+  height: min-content;
+}

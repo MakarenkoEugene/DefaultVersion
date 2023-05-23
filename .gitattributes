@@ -1,0 +1,83 @@
+# Auto detect text files and perform LF normalization.
+# Resources:
+#       - https://stackoverflow.com/questions/170961/whats-the-strategy-for-handling-crlf-carriage-return-line-feed-with-git
+#       - https://www.kernel.org/pub/software/scm/git/docs/gitattributes.html
+
+# "text=auto"
+# the default text is determined by the content.
+# if the file is text, normalization is enabled for it when writing to git
+# With "text=auto" Git(lf) <==== Windows(crlf) Unix(lf)
+# Without "text=auto" Git(crlf/lf) <==== Windows(crlf) Unix(lf)
+
+# "eol=lf"
+# When reading, if you remove the parameter, then the endings will be determined by the
+# local/global config on the computer if there are none by the operating system 
+# With "eol=lf" Git ====> Windows(lf) Unix(lf)
+# Without "eol=lf" Git ====> Windows(crlf) Unix(lf)
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto eol=lf
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+# They can be omitted as they correspond to the parameters on line 19. In order to avoid mistakes, added them but this is excessive.
+*.c text eol=lf
+*.h text eol=lf
+*.xml text eol=lf
+*.ftl text eol=lf
+*.bat text eol=lf
+*.bsh text eol=lf
+*.css text eol=lf
+*.csv text eol=lf
+*.groovy text eol=lf
+*.htm text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.jsp text eol=lf
+*.log text eol=lf
+*.properties text eol=lf
+*.py text eol=lf
+*.rb text eol=lf
+*.sql text eol=lf
+*.txt text eol=lf
+*.classpath text eol=lf
+*.conf text eol=lf
+*.config text eol=lf
+*.dtd text eol=lf
+*.log text eol=lf
+*.patch text eol=lf
+*.php text eol=lf
+*.properties text eol=lf
+*.py text eol=lf
+*.rb text eol=lf
+*.txt text eol=lf
+*.xconf text eol=lf
+*.xml text eol=lf
+*.xsd text eol=lf
+*.xslt text eol=lf
+*.sh text eol=lf
+Dockerfile eol=lf
+*.Dockerfile eol=lf
+Dockerfile.* eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+# They can be omitted as they correspond to the parameters on line 19. In order to avoid mistakes, added them but this is excessive.
+*.png binary
+*.jpg binary
+*.pdf binary
+*.svg binary
+*.class binary
+*.doc binary
+*.docx binary
+*.gif binary
+*.ico binary
+*.jar binary
+*.jks binary
+*.jpe binary
+*.jpg binary
+*.xls binary
+*.xlsx binary
+*.woff binary
+*.ttf binary
+*.eot binary
