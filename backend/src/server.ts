@@ -1,8 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+
+import routes from './routes';
 const port = 3001;
-const routes = require('./routes');
 
 main().catch((err) => console.log(err));
 

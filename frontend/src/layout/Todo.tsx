@@ -1,46 +1,49 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-
-console.log(uuidv4());
 
 class API {
-  constructor(options) {
+  API_URL: string;
+
+  constructor(options: { API_URL: string }) {
     this.API_URL = options.API_URL;
   }
 
-  async getTodos() {
+  async getTodos(): Promise<ApiTodos> {
     try {
-      const res = await axios.get(`${this.API_URL}/todos`);
+      const res = await axios.get<ApiTodos>(`${this.API_URL}/todos`);
 
       return res.data;
     } catch (err) {
       console.log(err);
+      return [];
     }
   }
 
-  async addTodo(todo) {
+  async addTodo(todo: Todo): Promise<ApiTodo | undefined> {
     try {
-      const res = await axios.post(`${this.API_URL}/todos`, todo);
+      const res = await axios.post<ApiTodo | undefined>(`${this.API_URL}/todos`, todo);
 
       return res.data;
     } catch (err) {
       console.log(err);
+      return;
     }
   }
 }
 
-const api = new API({ API_URL: process.env.API_URL });
+const api = new API({ API_URL: process.env.API_URL || '' });
 
 function Todo() {
   const [state, setState] = useState({ description: '', title: '', dueDate: '' });
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([] as ApiTodos);
 
-  const onChange = (field) => (e) => {
-    const newState = { ...state, [field]: e.target.value };
+  const onChange =
+    (field: string): React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> =>
+    (e) => {
+      const newState = { ...state, [field]: e.target.value };
 
-    setState(newState);
-  };
+      setState(newState);
+    };
 
   const getTodos = useCallback(async () => {
     const res = await api.getTodos();
@@ -49,22 +52,25 @@ function Todo() {
   }, [setTodos]);
 
   useEffect(() => {
-    getTodos();
+    void getTodos();
   }, [getTodos]);
 
   const onSubmit = useCallback(
-    async (e) => {
+    async (e: SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       const newTodo = await api.addTodo(state);
-      setTodos([...todos, newTodo]);
+
+      if (newTodo !== undefined) {
+        setTodos([...todos, newTodo]);
+      }
     },
     [state, setTodos, todos],
   );
 
   return (
     <div className='todo'>
-      <form className='todo-form' onSubmit={onSubmit}>
+      <form className='todo-form' onSubmit={(e) => void onSubmit(e)}>
         <input
           type='text'
           name='title'
@@ -79,11 +85,11 @@ function Todo() {
           value={state.description}
           onChange={onChange('description')}
           id='description'
-          cols='20'
-          rows='3'
+          cols={20}
+          rows={3}
           placeholder='Description'
         />
-        <input type='date' name='dueDate' value={state.date} onChange={onChange('dueDate')} />
+        <input type='date' name='dueDate' value={state.dueDate} onChange={onChange('dueDate')} />
         <input type='submit' value='Add' />
       </form>
       <div className='todo-list'>

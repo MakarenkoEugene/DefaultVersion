@@ -9,7 +9,7 @@ const { title, version } = require('./package.json');
 const production = process.argv.includes('production');
 
 module.exports = {
-  entry: path.join(__dirname, './src/index.jsx'),
+  entry: path.join(__dirname, './src/index.tsx'),
 
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -17,10 +17,15 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.scss'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.scss'],
 
     alias: {
       '@src': path.resolve(__dirname, 'src/'),
+    },
+    extensionAlias: {
+      '.js': ['.js', '.ts'],
+      '.cjs': ['.cjs', '.cts'],
+      '.mjs': ['.mjs', '.mts'],
     },
   },
 
@@ -38,6 +43,11 @@ module.exports = {
             cacheCompression: false,
           },
         },
+      },
+      {
+        test: /\.([cm]?ts|tsx)$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
       },
       {
         test: /\.(scss|css)$/,

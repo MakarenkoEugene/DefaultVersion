@@ -4,13 +4,10 @@
   "parserOptions": {
     "project": "tsconfig.json",
     "tsconfigRootDir": ".",
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "import", "no-loops"],
+  "plugins": ["@typescript-eslint", "import", "no-loops"],
   "extends": [
     "prettier",
     "plugin:@typescript-eslint/recommended",
@@ -23,28 +20,23 @@
     }
   },
   "env": {
-    "browser": true,
-    "es6": true,
-    "node": true,
-    "jest": true
+    "es2020": true,
+    "node": true
   },
   "rules": {
     "no-loops/no-loops": 2,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "max-len": [2, 120],
     "import/prefer-default-export": 0,
-    "jsx-quotes": [2, "prefer-single"],
     "object-curly-newline": 0,
     "no-underscore-dangle": 0,
-    "react/jsx-props-no-spreading": 0,
     "no-return-assign": 0,
     "no-extra-boolean-cast": 0,
     "linebreak-style": [2, "unix"],
     "import/extensions": [0, "none"],
     "no-empty-function": 0,
-    "react/require-default-props": 0,
     "@typescript-eslint/no-empty-function": "warn",
     "import/no-extraneous-dependencies": ["error", { "packageDir": "./" }],
+    "@typescript-eslint/consistent-type-definitions": 0,
 
     // Note: you must disable the base rule as it can report incorrect errors
     // Bug: https://github.com/typescript-eslint/tslint-to-eslint-config/issues/856

@@ -3,15 +3,19 @@
 // (e.g. Chrome User Experience Report, Page Speed Insights, Search Console's Speed Report).
 // https://github.com/GoogleChrome/web-vitals/#types
 
-const reportWebVitals = (onPerfEntry) => {
+import { CLSReportCallback } from 'web-vitals';
+
+const reportWebVitals = (onPerfEntry: CLSReportCallback) => {
   if (onPerfEntry) {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS(onPerfEntry);
-      getFID(onPerfEntry);
-      getFCP(onPerfEntry);
-      getLCP(onPerfEntry);
-      getTTFB(onPerfEntry);
-    });
+    import('web-vitals')
+      .then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+        getCLS(onPerfEntry);
+        getFID(onPerfEntry);
+        getFCP(onPerfEntry);
+        getLCP(onPerfEntry);
+        getTTFB(onPerfEntry);
+      })
+      .catch((err) => console.log(err));
   }
 };
 

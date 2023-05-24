@@ -11,6 +11,7 @@ RUN npm install --silent
 ENV PATH /${PROJECT_NAME}/backend/node_modules/.bin:$PATH
 
 # Is connected from volume
+COPY  nodemon.json tsconfig.json ./
 COPY src ./src
 
 EXPOSE 3001

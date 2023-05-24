@@ -1,0 +1,6 @@
+node_modules
+dist
+app.config.js
+babel.config.js
+jest-test.config.js
+webpack.config.js

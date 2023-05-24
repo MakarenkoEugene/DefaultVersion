@@ -8,6 +8,8 @@ npm-debug.log
 .vs
 
 backend/node_modules
+backend/dist
+
 frontend/node_modules
 frontend/dist
 

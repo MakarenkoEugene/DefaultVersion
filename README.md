@@ -11,7 +11,7 @@ Workflow:
 Containers: 
 - DB: MongoDB
 - Server: Express, Mongoose
-- Web: Webpack, React, Mobx, Material-UI
+- Web: Webpack, React
 
 ## Quick start
 
@@ -36,3 +36,15 @@ docker-compose -f docker-compose.dev.yml up -d
 ```
 
 The server running on port 3001. The web server is running on port 3000
+
+For the right working IDE. install node_modules to the local machine.
+```shell
+cd ./backend && npm install && cd ..
+cd ./frontend && npm install && cd ..
+```
+or 
+```shell
+cd ./backend; npm install; cd ..
+cd ./frontend; npm install; cd ..
+```
+`npm run install --prefix ./frontend` Didn't work for me.

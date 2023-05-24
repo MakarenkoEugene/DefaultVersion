@@ -9,7 +9,7 @@ RUN npm install --silent
 
 ENV PATH /${PROJECT_NAME}/frontend/node_modules/.bin:$PATH
 
-COPY webpack.config.js babel.config.js ./
+COPY webpack.config.js babel.config.js tsconfig.json ./
 COPY public ./public
 # Is connected from volume
 COPY src ./src
